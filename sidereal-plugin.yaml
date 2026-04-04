@@ -1,0 +1,65 @@
+name: messages-blade-mcp
+version: "0.1.0"
+description: "Apple Messages (iMessage) operations — conversations, search, contacts, attachments, send"
+author: piersdd
+licence: MIT
+tier: certified
+homepage: https://github.com/piersdd/messages-blade-mcp
+contract: messages-v1
+
+services:
+  messages:
+    chats: messages_chats
+    messages: messages_messages
+    search: messages_search
+    chat: messages_chat
+    contacts: messages_contacts
+    attachments: messages_attachments
+    stats: messages_stats
+    unread: messages_unread
+    send: messages_send
+    send_file: messages_send_file
+
+setup:
+  icon: "\U0001F4AC"
+  blurb: "Read iMessage and SMS conversations, search message history, and send messages on macOS."
+  auth_model: none
+  complexity: moderate
+  fields:
+    - key: MESSAGES_WRITE_ENABLED
+      label: "Enable send operations"
+      secret: false
+      placeholder: "false"
+      required: false
+      help: "Set to 'true' to enable sending. All sends require additional confirm=true."
+  test:
+    endpoint: "file://~/Library/Messages/chat.db"
+    auth_style: none
+  prerequisites:
+    - "macOS 13 (Ventura) or later"
+    - "Full Disk Access for terminal emulator"
+  help:
+    - label: "Granting Full Disk Access"
+      url: "https://support.apple.com/guide/mac-help/allow-access-to-files-in-security-privacy-mchld5a35146/mac"
+
+install:
+  runtime: uv
+  package: messages-blade-mcp
+  command: messages-blade-mcp
+
+env:
+  - name: MESSAGES_WRITE_ENABLED
+    description: "Enable send operations (all sends also require confirm=true)"
+    default: "false"
+  - name: MESSAGES_DB_PATH
+    description: "Override chat.db path (default: ~/Library/Messages/chat.db)"
+
+requires:
+  sidereal: ">=0.40"
+
+conformance:
+  required: "3/3"
+  recommended: "3/3"
+  optional: "2/2"
+  gated: "2/2"
+  last_tested: "2026-04-04"
