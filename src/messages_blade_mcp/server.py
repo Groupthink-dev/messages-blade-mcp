@@ -392,4 +392,12 @@ async def messages_start_group(
 
 def main() -> None:
     """Run the MCP server."""
-    mcp.run(transport="stdio")
+    import os
+
+    transport = os.environ.get("MESSAGES_MCP_TRANSPORT", "stdio")
+    if transport == "http":
+        host = os.environ.get("MESSAGES_MCP_HOST", "127.0.0.1")
+        port = int(os.environ.get("MESSAGES_MCP_PORT", "8770"))
+        mcp.run(transport="http", host=host, port=port)
+    else:
+        mcp.run(transport="stdio")
