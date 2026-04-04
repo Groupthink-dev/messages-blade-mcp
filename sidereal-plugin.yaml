@@ -1,10 +1,10 @@
 name: messages-blade-mcp
 version: "0.1.0"
 description: "Apple Messages (iMessage) operations — conversations, search, contacts, attachments, send"
-author: piersdd
+author: groupthink-dev
 licence: MIT
 tier: certified
-homepage: https://github.com/piersdd/messages-blade-mcp
+homepage: https://github.com/groupthink-dev/messages-blade-mcp
 contract: messages-v1
 
 services:
