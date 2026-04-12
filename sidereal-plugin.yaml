@@ -4,6 +4,8 @@ description: "Apple Messages (iMessage) operations — conversations, search, co
 author: groupthink-dev
 licence: MIT
 tier: certified
+author_type: first-party
+readiness: beta
 homepage: https://github.com/groupthink-dev/messages-blade-mcp
 contract: messages-v1
 
